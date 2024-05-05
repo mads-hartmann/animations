@@ -1,2 +1,5 @@
 # Animations
 
+```
+npm run dev
+```
