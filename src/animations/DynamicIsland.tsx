@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import "./index.css";
 
-export default function App() {
+export default function DynamicIsland() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
