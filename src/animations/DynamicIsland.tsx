@@ -5,19 +5,23 @@ export default function DynamicIsland() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex justify-center items-center min-h-screen min-w-[100vw] bg-[#0F0F0F]">
+    <div className="absolute bottom-6 left-6 right-6 mx-auto w-24 ">
       <motion.div
         layout
-        data-isopen={isOpen}
-        initial={{ borderRadius: 50 }}
         className={
-          "border-1 overflow-hidden rounded-[14px] border border-[#242524] text-sm text-white shadow-menu bg-[#161716] dark:shadow-inner-shadow-dark-float md:block" +
-          "size-[100px] flex justify-center items-center data-[isopen=true]:w-[400px] data-[isopen=true]:h-[200px]"
+          "border-1 overflow-hidden rounded-[14px] border border-[#242524] text-sm text-white shadow-menu bg-[#161716] " +
+          "flex justify-center items-center"
         }
+        animate={{
+          width: isOpen ? 400 : 100, 
+          height: isOpen ? 200 : 100 , 
+          y: isOpen ? -50 : 0,
+          x: isOpen ? -150 : 0,
+        }}
         onClick={() => setIsOpen(!isOpen)}
       >
        <motion.div>
-          <button className="cursor-pointer text-nowrap px-3 py-2 font-medium text-[#929292] transition-colors duration-300">Open</button>
+          <button className="cursor-pointer text-nowrap px-3 py-2 font-medium text-[#929292]">Open</button>
         </motion.div> 
       </motion.div>
     </div>
