@@ -36,17 +36,16 @@ export default function DynamicIsland() {
             animate="visible"
             exit="hidden"
           >
-            <motion.button
-              layout
+            <button
               onClick={() => setIsOpen(false)}
               className={btn + " absolute top-2 right-2"}
             >
               <X />
-            </motion.button>
-            <motion.div className="flex flex-col">
-              <motion.span>Create an environment</motion.span>
-              <motion.span>Open a repo in a new environment</motion.span>
-            </motion.div>
+            </button>
+            <div className="flex flex-col">
+              <span>Create an environment</span>
+              <span>Open a repo in a new environment</span>
+            </div>
           </motion.div>
         ) : (
           <motion.div
@@ -59,20 +58,18 @@ export default function DynamicIsland() {
             exit="hidden"
           >
             <div className="flex place-content-center">
-              <motion.button
-                layout
+              <button
                 onClick={() => setIsOpen(true)}
                 className={btn}
               >
                 <PlusIcon />
-              </motion.button>
-              <motion.button
-                layout
+              </button>
+              <button
                 onClick={() => setIsOpen(true)}
                 className={btn}
               >
                 <Settings />
-              </motion.button>
+              </button>
             </div>
           </motion.div>
         )}
