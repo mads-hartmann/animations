@@ -54,6 +54,10 @@ export default function DynamicIsland() {
               className="flex flex-col"
             >
               <span>Create an environment</span>
+              <label>Paste repository url</label>
+              <input value="https://github.com/gitpod-io/gitpod-next"></input>
+              <label>Environment type</label>
+              <input value="Gitpod app"></input>
               <span>Open a repo in a new environment</span>
             </motion.div>
           </motion.div>
