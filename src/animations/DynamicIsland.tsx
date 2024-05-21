@@ -32,6 +32,10 @@ export default function DynamicIsland() {
             layoutId="rectangle"
             className={`${shared}`}
             variants={openVariants}
+            transition={{
+              duration: 0.2,
+              delayChildren: 0.1
+            }}
             initial="hidden"
             animate="visible"
             exit="hidden"
@@ -42,10 +46,16 @@ export default function DynamicIsland() {
             >
               <X />
             </button>
-            <div className="flex flex-col">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0},
+                visible: { opacity: 1},
+              }}
+              className="flex flex-col"
+            >
               <span>Create an environment</span>
               <span>Open a repo in a new environment</span>
-            </div>
+            </motion.div>
           </motion.div>
         ) : (
           <motion.div
