@@ -4,6 +4,7 @@ import { createBrowserRouter, Link, Outlet, RouterProvider } from "react-router-
 import DynamicIsland from "./animations/DynamicIsland.tsx";
 import Square from "./animations/animationsdotdev/Square.tsx";
 import "./index.css";
+import { ObjectBlurs } from "./animations/ObjectBlurs.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,9 +25,8 @@ const router = createBrowserRouter([
           <li>
             <Link to={"/dynamic-island"}>Dynamic Island</Link>
           </li>
-          <li>
-            <Link to={"/animationsdotdev"}>animations.dev Square</Link>
-          </li>
+          <li><Link to={"/animationsdotdev"}>animations.dev Square</Link></li>
+          <li><Link to={"/objectblurs"}>Object Blurs</Link></li>
         </ul>
       </div>
         )
@@ -38,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/animationsdotdev",
         element: <Square />,
+      },
+      {
+        path: "/objectblurs",
+        element: <ObjectBlurs />,
       },
     ],
   },
