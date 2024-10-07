@@ -1,0 +1,24 @@
+tasks:
+    hello:
+        name: npm install
+        command: |
+          npm install
+          touch /tmp/npm-install.completed
+        triggeredBy:
+        - postEnvironmentStart
+
+services:
+    dev:
+        name: Vite Dev Server
+        description: Example service simulating a backend
+        commands:
+            start: |
+              while [ ! -f /tmp/npm-install.completed ]; do
+                echo "Waiting for npm install to complete..."
+                sleep 5
+              done
+              echo "Running npm install"
+              npm run dev
+            ready: curl -q -s -o /dev/null http://localhost:5173
+        triggeredBy:
+            - postEnvironmentStart
