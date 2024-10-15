@@ -1,11 +1,18 @@
 tasks:
-    hello:
+    install:
         name: npm install
         command: |
           npm install
           touch /tmp/npm-install.completed
         triggeredBy:
         - postEnvironmentStart
+    lint:
+        name: lint
+        description: Run linting
+        command: |
+          npm run lint
+        triggeredBy:
+          - manual
 
 services:
     dev:
