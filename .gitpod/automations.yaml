@@ -1,23 +1,30 @@
 tasks:
     install:
         name: npm install
+        triggeredBy: [postEnvironmentStart]
         command: |
           npm install
           touch /tmp/npm-install.completed
-        triggeredBy:
-        - postEnvironmentStart
+
     lint:
-        name: lint
-        description: Run linting
-        command: |
-          npm run lint
-        triggeredBy:
-          - manual
+        name: Lint
+        description: npm run lint
+        dependsOn: [install]
+        triggeredBy: [manual]
+        command: npm run lint
+
+    build:
+        name: Build
+        description: npm run build
+        dependsOn: [install]
+        triggeredBy: [manual]
+        command: npm run build
 
 services:
     dev:
         name: Vite Dev Server
         description: Example service simulating a backend
+        triggeredBy: [postEnvironmentStart]
         commands:
             start: |
               while [ ! -f /tmp/npm-install.completed ]; do
@@ -27,5 +34,4 @@ services:
               echo "Running npm install"
               npm run dev
             ready: curl -q -s -o /dev/null http://localhost:5173
-        triggeredBy:
-            - postEnvironmentStart
+        
