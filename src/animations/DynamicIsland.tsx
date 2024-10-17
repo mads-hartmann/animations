@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { PlusIcon, Settings, X } from "lucide-react";
+import { Settings, X } from "lucide-react";
 
 export default function DynamicIsland() {
   const [isOpen, setIsOpen] = useState(false);
