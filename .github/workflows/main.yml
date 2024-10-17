@@ -1,15 +1,43 @@
 name: Animations
-on:
-  workflow_dispatch:
-  push:
+on: [workflow_dispatch, push]
 
 jobs:
   ci:
     name: CI
     runs-on: ubuntu-latest
     steps:
-    - name: Check out repository code
+
+    - name: "Check out repository code"
       uses: actions/checkout@v4
-    - name: List files in the repository
+
+    - name: "Install & configure Gitpod CLI"
       run: |
-        ls ${{ github.workspace }}
+        # TEMPORARY HACK TO GET LATEST (curl -s https://releases.gitpod.io/cli/install.sh | bash)
+        curl -L -o gitpod-linux-amd64 https://releases.gitpod.io/cli/development/ft-cli-fix-task-start/gitpod-linux-amd64
+        chmod +x gitpod-linux-amd64
+        mv gitpod-linux-amd64 /usr/local/bin/gitpod
+        gitpod version
+        gitpod login --token ${{ secrets.GITPOD_PAT }}
+
+    - name: "Create Gitpod environment"
+      run: gitpod environment create --set-as-context --class-id "01922db6-8317-7adf-a12b-ee0c7c5bda4e" "https://github.com/${{ github.repository }}/tree/${{ github.ref_name }}"
+
+    - name: "Run Gitpod tasks: Lint"
+      run: gitpod auto tasks start lint
+    
+    - name: "Run Gitpod tasks: Build"
+      run: gitpod auto tasks start build
+
+    - name: "Delete Gitpod environment"
+      if: always()
+      run: gitpod environment delete --dont-wait
+
+# IMPROVEMENTS / LIMITATIONS
+#
+# - Can't use projects right now as I have no way to check out a specfic branch when creating an environment
+#
+# FUTURE IMPROVEMENTS
+#
+# - You could re-use environments per branch to avoid stop start time overhead
+# - You could leave the environment running if the build fails so you can debug and fix it in the existing environment
+# - If we had support for naming environments we could name them after the GH Actions run ID
