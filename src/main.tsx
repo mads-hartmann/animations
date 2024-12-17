@@ -5,6 +5,9 @@ import DynamicIsland from "./animations/DynamicIsland.tsx";
 import Square from "./animations/animationsdotdev/Square.tsx";
 import "./index.css";
 import { ObjectBlurs } from "./animations/ObjectBlurs.tsx";
+import { Keyboard } from "./animations/Keyboard.tsx";
+
+import '@fontsource-variable/inter';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,7 @@ const router = createBrowserRouter([
           </li>
           <li><Link to={"/animationsdotdev"}>animations.dev Square</Link></li>
           <li><Link to={"/objectblurs"}>Object Blurs</Link></li>
+          <li><Link to={"/keyboard"}>Keyboard</Link></li>
         </ul>
       </div>
         )
@@ -44,6 +48,10 @@ const router = createBrowserRouter([
         element: <ObjectBlurs />,
       },
     ],
+  },
+  {
+    path: "/keyboard",
+    element: <Keyboard />,
   },
 ]);
 
